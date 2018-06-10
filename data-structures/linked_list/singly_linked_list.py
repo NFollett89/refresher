@@ -1,10 +1,9 @@
 #!/usr/bin/env python2
 
 class NFNode(object):
-    def __init__(self, data=None):
+    def __init__(self, data=None, next_node=None):
         self.data = data
-        self.next_node = None
-        return None
+        self.next_node = next_node
 
     def get_data(self):
         return self.data
@@ -12,56 +11,67 @@ class NFNode(object):
     def set_data(self, new_data):
         self.data = new_data
 
-    def get_next_node(self):
+    def get_next(self):
         return self.next_node
 
-    def set_next_node(self, new_next):
+    def set_next(self, new_next):
         self.next_node = new_next
         
 
 class NFSinglyLinkedList(object):
-    def __init__(self):
-        self.head = None
-        return self.head
+    def __init__(self, head=None):
+        self.head = head
 
     # Get length of the collection
     def __len__(self):
         return self.length()
 
+    # Get informal string representation
+    def __str__(self):
+        if not self.head:
+            return ""
+        data = [self.head.get_data()]
+        current = self.head
+        while current.get_next():
+            current = current.get_next()
+            if current.get_data():
+                data.append(current.get_data())
+        return str(data)
+
     # Get length of the list
     def length(self):
         length = 0
         current = self.head
-        while current.get_next_node():
+        while current.get_next():
             length += 1
-            current = current.get_next_node()
+            current = current.get_next()
         return length
 
-    # Get the i'th node of the list
-    def index(self, index):
+    # Get the node at given index
+    def get_index(self, index):
         current = self.head
         for _ in xrange(index):
-            if current.get_next_node():
-                current = current.get_next_node()
+            if current.get_next():
+                current = current.get_next()
             else:
-                break
-        return current
+                raise IndexError("Given index out of range")
+        return current.get_next()
 
     # Get the first node of the list
-    def head(self):
+    def get_head(self):
         return self.head
 
     # Get the last node of the list
-    def tail(self):
+    def get_tail(self):
         current = self.head
-        while current.get_next_node():
-            current = current.get_next_node()
+        while current.get_next():
+            current = current.get_next()
         return current
 
     # Add a new node to the head of the list
     def push(self, data):
         new_node = NFNode(data)
-        new_node.set_next_node(self.head)
+        new_node.set_next(self.head)
         self.head = new_node
 
     # Add a new node at the given list index
@@ -72,11 +82,13 @@ class NFSinglyLinkedList(object):
             return
         current = self.head
         for _ in xrange(index):
-            if current.get_next_node():
-                current = current.get_next_node()
+            if current.get_next():
+                current = current.get_next()
             else:
-                break
-        current.set_next_node(new_node)
+                current.set_next(new_node)
+                return
+        new_node.set_next(current.get_next())
+        current.set_next(new_node)
 
     # Add a new node to the end of the list
     def append(self, data):
@@ -84,5 +96,12 @@ class NFSinglyLinkedList(object):
         if not self.head:
             self.head = new_node
         else:
-            self.get_last_node().set_next_node(new_node)
+            self.get_tail().set_next(new_node)
+
+    # Delete the head of the list
+    def delete_head(self):
+        self.head = self.head.get_next()
+
+    # Delete a node from given index
+    # Delete the tail of the list
 

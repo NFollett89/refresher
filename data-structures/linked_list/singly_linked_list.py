@@ -22,10 +22,6 @@ class NFSinglyLinkedList(object):
     def __init__(self, head=None):
         self.head = head
 
-    # Get length of the collection
-    def __len__(self):
-        return self.length()
-
     # Get informal string representation
     def __str__(self):
         if not self.head:
@@ -38,9 +34,15 @@ class NFSinglyLinkedList(object):
                 data.append(current.get_data())
         return str(data)
 
+    # Get length of the collection
+    def __len__(self):
+        return self.length()
+
     # Get length of the list
     def length(self):
-        length = 0
+        if not self.head:
+            return 0
+        length = 1
         current = self.head
         while current.get_next():
             length += 1
@@ -50,7 +52,7 @@ class NFSinglyLinkedList(object):
     # Get the node at given index
     def get_index(self, index):
         current = self.head
-        for _ in xrange(index):
+        for _ in xrange(index-1):
             if current.get_next():
                 current = current.get_next()
             else:
@@ -81,7 +83,7 @@ class NFSinglyLinkedList(object):
             self.head = new_node
             return
         current = self.head
-        for _ in xrange(index):
+        for _ in xrange(index-1):
             if current.get_next():
                 current = current.get_next()
             else:

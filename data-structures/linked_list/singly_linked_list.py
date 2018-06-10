@@ -44,7 +44,7 @@ class NFSinglyLinkedList(object):
             if current.get_next_node():
                 current = current.get_next_node()
             else:
-                return break
+                break
         return current
 
     # Get the first node of the list
@@ -79,7 +79,7 @@ class NFSinglyLinkedList(object):
         current.set_next_node(new_node)
 
     # Add a new node to the end of the list
-    def append(self, data)
+    def append(self, data):
         new_node = NFNode(data)
         if not self.head:
             self.head = new_node

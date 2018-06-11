@@ -50,19 +50,20 @@ def test():
         sll_1.get_index(9001).get_data()
     except Exception as err:
         print "\t%s" % err
-"""
+    
     print "\n- Remove nodes:"
-    sll.delete_head()
-    run_test("delete_head()", "[1, 3]", sll)
-    sll.delete_index(2)
-    sll.delete_tail
+    sll_1.delete_head()
+    run_test("delete_head()", "[1, 2, 3, 4]", sll_1)
+    sll_1.delete_tail()
+    run_test("delete_tail()", "[1, 2, 3]", sll_1)
+    sll_1.delete_index(1)
+    run_test("delete_index(1)", "[1, 3]", sll_1)
+    sll_1.delete_index(1)
+    run_test("delete_index(1)", "[1]", sll_1)
+    sll_1.delete_index(0)
+    run_test("delete_index(0)", "[]", sll_1)
+    run_test("length()", "0", sll_1.length())
 
-    print"\n- Remove nodes while empty:"
-    sll.delete_head()
-    sll.delete_index(1)
-    sll.delete_tail()
-"""
-
-#    print "\nTests finished\n"
+    print "\nTests finished\n"
 
 test()

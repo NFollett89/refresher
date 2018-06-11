@@ -25,7 +25,7 @@ class NFSinglyLinkedList(object):
     # Get informal string representation
     def __str__(self):
         if not self.head:
-            return ""
+            return "[]"
         data = [self.head.get_data()]
         current = self.head
         while current.get_next():
@@ -104,6 +104,25 @@ class NFSinglyLinkedList(object):
     def delete_head(self):
         self.head = self.head.get_next()
 
-    # Delete a node from given index
     # Delete the tail of the list
+    def delete_tail(self):
+        current = self.head
+        while current.get_next():
+            previous = current
+            current = current.get_next()
+        previous.set_next(None)
+
+    # Delete a node from given index
+    def delete_index(self, index):
+        if index == 0:
+            return self.delete_head()
+        current = self.head
+        for _ in xrange(index-1):
+            if current.get_next():
+                current = current.get_next()
+            else:
+                raise IndexError("Given index out of range")
+        tmp = current.get_next()
+        current.set_next(current.get_next().get_next())
+        tmp.set_next(None)
 

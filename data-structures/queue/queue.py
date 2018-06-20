@@ -35,6 +35,8 @@ class NFQueue(object):
 
     # Return data from the front of the queue
     def peek(self):
+        if len(self.queue) == 0:
+            return None
         return self.queue[0]
 
     # Clear the queue

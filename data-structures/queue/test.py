@@ -50,6 +50,6 @@ def test():
     except Exception as err:
         print err
     
-    print "\nAll tests passed: %s" % full_pass
+    print "\nFinal result: %s" % "Pass" if full_pass else "Fail"
 
 test()

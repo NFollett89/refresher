@@ -26,11 +26,8 @@ def test():
     run_test("dequeue()", "None", my_queue.dequeue())
     run_test("peek()", "None", my_queue.peek())
     run_test("contains(0)", "False", my_queue.contains(0))
-    try:
-        my_queue.clear()
-        run_test("clear()", "[]", my_queue)
-    except Exception as err:
-        print err
+    my_queue.clear()
+    run_test("clear()", "[]", my_queue)
  
     for i in xrange(10):
         my_queue.enqueue(i) 
@@ -44,11 +41,8 @@ def test():
     run_test("peek()", "0", my_queue.peek())
     run_test("dequeue()", "0", my_queue.dequeue())
     run_test("dequeue()", "1", my_queue.dequeue())
-    try:
-        my_queue.clear()
-        run_test("clear()", "[]", my_queue)
-    except Exception as err:
-        print err
+    my_queue.clear()
+    run_test("clear()", "[]", my_queue)
     
     print "\nFinal result: %s" % ("Pass" if full_pass else "Fail")
 

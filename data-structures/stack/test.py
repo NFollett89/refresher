@@ -26,11 +26,8 @@ def test():
     run_test("pop()", "None", my_stack.pop())
     run_test("peek()", "None", my_stack.peek())
     run_test("contains(0)", "False", my_stack.contains(0))
-    try:
-        my_stack.clear()
-        run_test("clear()", "[]", my_stack)
-    except Exception as err:
-        print err
+    my_stack.clear()
+    run_test("clear()", "[]", my_stack)
  
     for i in xrange(10):
         my_stack.push(i) 
@@ -44,11 +41,8 @@ def test():
     run_test("peek()", "9", my_stack.peek())
     run_test("pop()", "9", my_stack.pop())
     run_test("pop()", "8", my_stack.pop())
-    try:
-        my_stack.clear()
-        run_test("clear()", "[]", my_stack)
-    except Exception as err:
-        print err
+    my_stack.clear()
+    run_test("clear()", "[]", my_stack)
     
     print "\nFinal result: %s" % ("Pass" if full_pass else "Fail")
 

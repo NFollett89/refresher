@@ -43,7 +43,7 @@ def test():
     run_test("length()", "10", len(my_queue))
     run_test("peek()", "0", my_queue.peek())
     run_test("dequeue()", "0", my_queue.dequeue())
-    run_test("dequeue()", "TEST", my_queue.dequeue())
+    run_test("dequeue()", "1", my_queue.dequeue())
     try:
         my_queue.clear()
         run_test("clear()", "[]", my_queue)

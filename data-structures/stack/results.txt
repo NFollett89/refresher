@@ -1,0 +1,28 @@
+
+Testing NFStack()
+  - Pass | length() : 0 == 0
+  - Pass | pop() : None == None
+  - Pass | peek() : None == None
+  - Pass | contains(0) : False == False
+  - Pass | clear() : [] == []
+  - Pass | __iter__() : 9 == 9
+  - Pass | __iter__() : 8 == 8
+  - Pass | __iter__() : 7 == 7
+  - Pass | __iter__() : 6 == 6
+  - Pass | __iter__() : 5 == 5
+  - Pass | __iter__() : 4 == 4
+  - Pass | __iter__() : 3 == 3
+  - Pass | __iter__() : 2 == 2
+  - Pass | __iter__() : 1 == 1
+  - Pass | __iter__() : 0 == 0
+  - Pass | lenth() : 10 == 10
+  - Pass | __str__() : [9, 8, 7, 6, 5, 4, 3, 2, 1, 0] == [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+  - Pass | contains(0) : True == True
+  - Pass | contains(9001) : False == False
+  - Pass | length() : 10 == 10
+  - Pass | peek() : 9 == 9
+  - Pass | pop() : 9 == 9
+  - Pass | pop() : 8 == 8
+  - Pass | clear() : [] == []
+
+Final result: Pass

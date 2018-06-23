@@ -1,4 +1,5 @@
 #!/usr/bin/env python2
+import copy
 
 class NFArrayList(object):
     def __init__(self):
@@ -23,7 +24,11 @@ class NFArrayList(object):
     def length(self):
         return len(self.arraylist)
 
-    # Add data to the front of the list, or to specified position
+    # Clone the array list
+    def clone(self):
+        return copy.copy(self)
+
+    # Add data to the end of the list, or to the specified position
     def add(self, data, position=None):
         if position or position == 0:
             if position > self.length():
@@ -51,8 +56,8 @@ class NFArrayList(object):
 
     # Returns the element at the given index
     def get(self, index):
-        if index >= self.length():
-            raise IndexError("Index is out of range for arraylist with length %s" % self.length())
+        if index >= self.length() or abs(index) > self.length():
+            raise IndexError("Index %s is out of range for arraylist with length %s" % (index, self.length()))
         else:
             return self.arraylist[index]
 
@@ -77,25 +82,59 @@ class NFArrayList(object):
 
     # Remove element at index
     def remove(self, index):
-        return #TODO
+        if index >= self.length() or abs(index) > self.length():
+            raise IndexError("Index %s is out of range for arraylist with length %s" % (index, self.length()))
+        elif index == self.length() - 1 or index == -1:
+            self.arraylist = self.arraylist[:index]
+        else:
+            self.arraylist = self.arraylist[:index] + self.arraylist[index + 1:]
 
-    # Remove range of elements from start index to end index
+    # Remove range of elements from inclusive start index to exclusive end index
+    # - Iteration always happens from left to right, i.e. self.arraylist[start:end:-1] will not be implemented
     def remove_range(self, start, end):
-        return #TODO
+        if ((start > 0 and end > 0) or (start < 0 and end < 0)) and start > end:
+            raise IndexError("Start index %s is greater than end index %s" % (start, end))
+        elif start == end:
+            raise IndexError("Start index %s and end index %s are the same" % (start, end))
+        elif start >= self.length():
+            raise IndexError("Start index %s is out of range for arraylist with length %s" % (start, self.length()))
+        elif end > self.length(): # Allow end to be equal to length in order to include deletion of last index
+            raise IndexError("End index %s is out of range for arraylist with length %s" % (end, self.length()))
+        else:
+            self.arraylist = self.arraylist[:start] + self.arraylist[end:] 
 
     # Removes all instances of found element from given collection
     def remove_all(self, collection):
-        return #TODO
+        new_arraylist = []
+        for i in self.arraylist:
+            if i not in collection:
+                new_arraylist.append(i)
+        self.arraylist = new_arraylist
 
     # Retains only the elements in this list that are contained in the given collection
     def retain_all(self, collection):
-        return #TODO
+        new_arraylist = []
+        for i in self.arraylist:
+            if i in collection:
+                new_arraylist.append(i)
+        self.arraylist = new_arraylist
 
     # Set element at given index to given data
     def set(self, index, data):
-        return #TODO
+        if index >= self.length() or abs(index) > self.length():
+            raise IndexError("Index %s is out of range for arraylist with length %s" % (index, self.length()))
+        self.arraylist[index] = data
 
     # Returns a view of the portion of this list between the specified start, inclusive, and end, exclusive.
     def sub_list(self, start, end):
-        return #TODO
+        if ((start > 0 and end > 0) or (start < 0 and end < 0)) and start > end:
+            raise IndexError("Start index %s is greater than end index %s" % (start, end))
+        elif start == end:
+            raise IndexError("Start index %s and end index %s are the same" % (start, end))
+        elif start >= self.length():
+            raise IndexError("Start index %s is out of range for arraylist with length %s" % (start, self.length()))
+        elif end > self.length(): # Allow end to be equal to length in order to include deletion of last index
+            raise IndexError("End index %s is out of range for arraylist with length %s" % (end, self.length()))
+        else:
+            return self.arraylist[start:end]
 

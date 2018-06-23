@@ -49,6 +49,10 @@ class NFSinglyLinkedList(object):
             current = current.get_next()
         return length
 
+    # Clone the linked list
+    def clone(self):
+        return copy.copy(self)
+
     # Get the node at given index
     def get_index(self, index):
         current = self.head

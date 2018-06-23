@@ -1,5 +1,7 @@
 #!/usr/bin/env python2
 
+import copy
+
 class NFStack(object):
     def __init__(self):
         self.stack = []
@@ -20,6 +22,10 @@ class NFStack(object):
     # Return length of stack
     def length(self):
         return len(self.stack)
+
+    # Clone the stack
+    def clone(self):
+        return copy.copy(self)
 
     # Add data to the back of the stack
     def push(self, data):

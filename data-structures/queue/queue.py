@@ -21,6 +21,10 @@ class NFQueue(object):
     def length(self):
         return len(self.queue)
 
+    # Clone the queue
+    def clone(self):
+        return copy.copy(self)
+
     # Add data to the back of the queue
     def enqueue(self, data):
         self.queue.append(data)

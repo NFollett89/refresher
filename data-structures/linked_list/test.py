@@ -2,14 +2,21 @@
 
 import singly_linked_list as sll
 
+full_pass = True
+
 def run_test(call, expected, actual):
+    global full_pass
     if expected:
         result = "Pass" if str(expected) == str(actual) else "Fail"
+        if result == "Fail":
+            full_pass = False
         print "  - %s | %s : %s vs. %s" % (result, call, actual, expected)
     else:
         print "  - %s : %s" % (call, actual)
 
 def test():
+    global full_pass
+
     # Tests for NFSinglyLinkedList()
     print "\nTesting NFSinglyLinkedList()"
     print "- Length while empty:"
@@ -48,6 +55,8 @@ def test():
     try:
         run_test("get_index(9001).get_data()", None, None)
         sll_1.get_index(9001).get_data()
+        print "\tFail | Check index integer"
+        full_pass = False
     except Exception as err:
         print "\t%s" % err
     
@@ -64,6 +73,6 @@ def test():
     run_test("delete_index(0)", "[]", sll_1)
     run_test("length()", "0", sll_1.length())
 
-    print "\nTests finished\n"
+    print "\nFinal result: %s" % ("Pass" if full_pass else "Fail")
 
 test()

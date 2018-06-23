@@ -19,7 +19,6 @@ def run_test(call, expected, actual):
 def test():
     global full_pass
 
-    # Tests for NFSinglyLinkedList()
     my_queue = q.NFQueue()
     print "\nTesting NFQueue()"
     run_test("length()", "0", len(my_queue))

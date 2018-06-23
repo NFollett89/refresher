@@ -19,9 +19,8 @@ def run_test(call, expected, actual):
 def test():
     global full_pass
 
-    # Tests for NFSinglyLinkedList()
     my_stack = s.NFStack()
-    print "\nTesting NFQueue()"
+    print "\nTesting NFStack()"
     run_test("length()", "0", len(my_stack))
     run_test("pop()", "None", my_stack.pop())
     run_test("peek()", "None", my_stack.peek())

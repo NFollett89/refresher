@@ -1,0 +1,43 @@
+Inserted foo - total words: 1 - total nodes: 3
+Inserted foobar - total words: 2 - total nodes: 6
+Inserted foobarbaz - total words: 3 - total nodes: 9
+Inserted footest1 - total words: 4 - total nodes: 14
+Inserted footest2 - total words: 5 - total nodes: 15
+Inserted foobartest - total words: 6 - total nodes: 19
+Inserted bar - total words: 7 - total nodes: 22
+Inserted bartest - total words: 8 - total nodes: 26
+Inserted barbaz - total words: 9 - total nodes: 29
+Inserted barbazbat - total words: 10 - total nodes: 32
+contains(test1): False
+contains(foo): True
+contains(foobar): True
+contains(foobarbaz): True
+contains(foobarbazbat): False
+
+Searching for 'foo':
+- Found word: foo
+- Found word: foobar
+- Found word: foobarbaz
+- Found word: foobartest
+- Found word: footest1
+- Found word: footest2
+
+Searching for 'bar':
+- Found word: bar
+- Found word: barbaz
+- Found word: barbazbat
+- Found word: bartest
+
+Searching for 'test':
+
+Generating all words:
+- Found word: bar
+- Found word: barbaz
+- Found word: barbazbat
+- Found word: bartest
+- Found word: foo
+- Found word: foobar
+- Found word: foobarbaz
+- Found word: foobartest
+- Found word: footest1
+- Found word: footest2

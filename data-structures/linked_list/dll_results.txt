@@ -1,0 +1,9 @@
+
+Testing NFDoublyLinkedList()
+- Length while empty:
+  - Pass | length() : 0 vs. 0
+
+- Additions while empty:
+  - Pass | push(1) : [1] vs. [1]
+  - Pass | append(1) : [1] vs. [1]
+  - Pass | insert(1, 0) : [1] vs. [1]

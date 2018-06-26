@@ -1,0 +1,35 @@
+
+Testing NFSinglyLinkedList()
+- Length while empty:
+  - Pass | length() : 0 vs. 0
+
+- Additions while empty:
+  - Pass | push(1) : [1] vs. [1]
+  - Pass | append(1) : [1] vs. [1]
+  - Pass | insert(1, 0) : [1] vs. [1]
+  - Pass | insert(1, 9001) : [1] vs. [1]
+
+- Additions while not empty:
+  - Pass | push(0) : [0, 1] vs. [0, 1]
+  - Pass | append(3) : [0, 1, 3] vs. [0, 1, 3]
+  - Pass | insert(2, 2) : [0, 1, 2, 3] vs. [0, 1, 2, 3]
+  - Pass | insert(4, 9001) : [0, 1, 2, 3, 4] vs. [0, 1, 2, 3, 4]
+
+- Getters while not empty:
+  - Pass | len(sll_1) : 5 vs. 5
+  - Pass | length() : 5 vs. 5
+  - Pass | head.data : 0 vs. 0
+  - Pass | get_tail().data : 4 vs. 4
+  - Pass | get_index(2).data : 2 vs. 2
+  - get_index(9001).data : None
+	Given index out of range
+
+- Remove nodes:
+  - Pass | delete_head() : [1, 2, 3, 4] vs. [1, 2, 3, 4]
+  - Pass | delete_tail() : [1, 2, 3] vs. [1, 2, 3]
+  - Pass | delete_index(1) : [1, 3] vs. [1, 3]
+  - Pass | delete_index(1) : [1] vs. [1]
+  - Pass | delete_index(0) : [] vs. []
+  - Pass | length() : 0 vs. 0
+
+Final result: Pass

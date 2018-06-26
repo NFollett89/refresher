@@ -30,11 +30,11 @@ def test():
     sll_1.append(1)
     run_test("append(1)", "[1]", sll_1)
     sll_1 = sll.NFSinglyLinkedList()
-    sll_1.insert(0, 1)
-    run_test("insert(0, 1)", "[1]", sll_1)
+    sll_1.insert(1, 0)
+    run_test("insert(1, 0)", "[1]", sll_1)
     sll_1 = sll.NFSinglyLinkedList()
-    sll_1.insert(9001, 1)
-    run_test("insert(9001, 1)", "[1]", sll_1)
+    sll_1.insert(1, 9001)
+    run_test("insert(1, 9001)", "[1]", sll_1)
 
     print "\n- Additions while not empty:"
     sll_1.push(0)
@@ -43,8 +43,8 @@ def test():
     run_test("append(3)", "[0, 1, 3]", sll_1)
     sll_1.insert(2, 2)
     run_test("insert(2, 2)", "[0, 1, 2, 3]", sll_1)
-    sll_1.insert(9001, 4)
-    run_test("insert(9001, 5)", "[0, 1, 2, 3, 4]", sll_1)
+    sll_1.insert(4, 9001)
+    run_test("insert(4, 9001)", "[0, 1, 2, 3, 4]", sll_1)
 
     print "\n- Getters while not empty:"
     run_test("len(sll_1)", "5", len(sll_1))

@@ -3,20 +3,8 @@
 class NFNode(object):
     def __init__(self, data=None, next_node=None):
         self.data = data
-        self.next_node = next_node
+        self.next = next_node
 
-    def get_data(self):
-        return self.data
-
-    def set_data(self, new_data):
-        self.data = new_data
-
-    def get_next(self):
-        return self.next_node
-
-    def set_next(self, new_next):
-        self.next_node = new_next
-        
 
 class NFSinglyLinkedList(object):
     def __init__(self, head=None):
@@ -26,12 +14,12 @@ class NFSinglyLinkedList(object):
     def __str__(self):
         if not self.head:
             return "[]"
-        data = [self.head.get_data()]
+        data = [self.head.data]
         current = self.head
-        while current.get_next():
-            current = current.get_next()
-            if current.get_data():
-                data.append(current.get_data())
+        while current.next:
+            current = current.next
+            if current.data:
+                data.append(current.data)
         return str(data)
 
     # Get length of the collection
@@ -44,9 +32,9 @@ class NFSinglyLinkedList(object):
             return 0
         length = 1
         current = self.head
-        while current.get_next():
+        while current.next:
             length += 1
-            current = current.get_next()
+            current = current.next
         return length
 
     # Clone the linked list
@@ -57,27 +45,23 @@ class NFSinglyLinkedList(object):
     def get_index(self, index):
         current = self.head
         for _ in xrange(index-1):
-            if current.get_next():
-                current = current.get_next()
+            if current.next:
+                current = current.next
             else:
                 raise IndexError("Given index out of range")
-        return current.get_next()
-
-    # Get the first node of the list
-    def get_head(self):
-        return self.head
+        return current.next
 
     # Get the last node of the list
     def get_tail(self):
         current = self.head
-        while current.get_next():
-            current = current.get_next()
+        while current.next:
+            current = current.next
         return current
 
     # Add a new node to the head of the list
     def push(self, data):
         new_node = NFNode(data)
-        new_node.set_next(self.head)
+        new_node.next = self.head
         self.head = new_node
 
     # Add a new node at the given list index
@@ -88,13 +72,13 @@ class NFSinglyLinkedList(object):
             return
         current = self.head
         for _ in xrange(index-1):
-            if current.get_next():
-                current = current.get_next()
+            if current.next:
+                current = current.next
             else:
-                current.set_next(new_node)
+                current.next = new_node
                 return
-        new_node.set_next(current.get_next())
-        current.set_next(new_node)
+        new_node.next = current.next
+        current.next = new_node
 
     # Add a new node to the end of the list
     def append(self, data):
@@ -102,19 +86,19 @@ class NFSinglyLinkedList(object):
         if not self.head:
             self.head = new_node
         else:
-            self.get_tail().set_next(new_node)
+            self.get_tail().next = new_node
 
     # Delete the head of the list
     def delete_head(self):
-        self.head = self.head.get_next()
+        self.head = self.head.next
 
     # Delete the tail of the list
     def delete_tail(self):
         current = self.head
-        while current.get_next():
+        while current.next:
             previous = current
-            current = current.get_next()
-        previous.set_next(None)
+            current = current.next
+        previous.next = None
 
     # Delete a node from given index
     def delete_index(self, index):
@@ -122,11 +106,11 @@ class NFSinglyLinkedList(object):
             return self.delete_head()
         current = self.head
         for _ in xrange(index-1):
-            if current.get_next():
-                current = current.get_next()
+            if current.next:
+                current = current.next
             else:
                 raise IndexError("Given index out of range")
-        tmp = current.get_next()
-        current.set_next(current.get_next().get_next())
-        tmp.set_next(None)
+        tmp = current.next
+        current.next = current.next.next
+        tmp.next = None
 

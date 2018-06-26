@@ -65,7 +65,7 @@ class NFSinglyLinkedList(object):
         self.head = new_node
 
     # Add a new node at the given list index
-    def insert(self, index, data):
+    def insert(self, data, index):
         new_node = NFNode(data)
         if not self.head:
             self.head = new_node

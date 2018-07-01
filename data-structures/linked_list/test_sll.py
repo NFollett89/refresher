@@ -67,10 +67,10 @@ def test():
     run_test("length()", "6", sll_1.length())
     run_test("head.data", "-1", sll_1.head.data)
     run_test("get_tail().data", "4", sll_1.get_tail().data)
-    run_test("get_index(3).data", "2", sll_1.get_index(3).data)
+    run_test("index(3).data", "2", sll_1.index(3).data)
     try:
-        run_test("get_index(9001).data", None, None)
-        sll_1.get_index(9001).data
+        run_test("index(9001).data", None, None)
+        sll_1.index(9001).data
         print "\tFail | Check index integer"
         full_pass = False
     except Exception as err:

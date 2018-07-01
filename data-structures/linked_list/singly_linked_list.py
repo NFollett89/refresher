@@ -35,7 +35,7 @@ class NFSinglyLinkedList(object):
         return copy.copy(self)
 
     # Get the node at given index
-    def get_index(self, index):
+    def index(self, index):
         if index > self.list_length or index < 0:
             raise IndexError("Given index %s out of range for linked list with length %s" % (index, self.list_length))
         current = self.head

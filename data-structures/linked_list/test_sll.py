@@ -20,12 +20,19 @@ def test():
     global full_pass
 
     # Tests for NFSinglyLinkedList()
-    print "\nTesting NFSinglyLinkedList()"
-    print "- Length while empty:"
     sll_1 = sll.NFSinglyLinkedList()
+    print "\nTesting NFSinglyLinkedList()"
+    print "- Length while empty %s:" % sll_1
     run_test("length()", "0", sll_1.length())
+    try:
+        run_test("index(0)", None, None)
+        sll_1.index(1)
+        print "\tFail | Check index integer"
+        full_pass = False
+    except Exception as err:
+        print "\t%s" % err
 
-    print"\n- Additions while empty:"
+    print"\n- Additions while empty %s:" % sll_1
     sll_1.push(1)
     run_test("push(1)", "[1]", sll_1)
     sll_1 = sll.NFSinglyLinkedList()
@@ -33,8 +40,8 @@ def test():
     run_test("append(1)", "[1]", sll_1)
     sll_1 = sll.NFSinglyLinkedList()
     try:
-        run_test("insert(1, 9001)", None, None)
-        sll_1.insert(1, 9001)
+        run_test("insert(1, 1)", None, None)
+        sll_1.insert(1, 1)
         print "\tFail | Check index integer"
         full_pass = False
     except Exception as err:
@@ -43,7 +50,7 @@ def test():
     sll_1.insert(1, 0)
     run_test("insert(1, 0)", "[1]", sll_1)
 
-    print "\n- Additions while not empty:"
+    print "\n- Additions while not empty %s:" % sll_1
     sll_1.push(0)
     run_test("push(0)", "[0, 1]", sll_1)
     sll_1.append(3)
@@ -55,22 +62,24 @@ def test():
     sll_1.insert(4, 5)
     run_test("insert(4, 5)", "[-1, 0, 1, 2, 3, 4]", sll_1)
     try:
-        run_test("insert(6, 9001)", None, None)
-        sll_1.insert(6, 9001)
+        run_test("insert(5, 7)", None, None)
+        sll_1.insert(6, 7)
         print "\tFail | Check index integer! %s" % sll_1
         full_pass = False
     except Exception as err:
         print "\t%s" % err
 
-    print "\n- Getters while not empty:"
+    print "\n- Getters while not empty %s:" % sll_1
     run_test("len(sll_1)", "6", len(sll_1))
     run_test("length()", "6", sll_1.length())
     run_test("head.data", "-1", sll_1.head.data)
     run_test("get_tail().data", "4", sll_1.get_tail().data)
+    run_test("index(0).data", "-1", sll_1.index(0).data)
     run_test("index(3).data", "2", sll_1.index(3).data)
+    run_test("index(5).data", "4", sll_1.index(5).data)
     try:
-        run_test("index(9001).data", None, None)
-        sll_1.index(9001).data
+        run_test("index(6).data", None, None)
+        sll_1.index(6).data
         print "\tFail | Check index integer"
         full_pass = False
     except Exception as err:
@@ -79,7 +88,7 @@ def test():
     sll_1 = sll.NFSinglyLinkedList()
     for i in xrange(10):
         sll_1.append(i)
-    print "\n- Remove nodes from new list [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]:"
+    print "\n- Remove nodes from new list %s:" % sll_1
     sll_1.delete_head()
     run_test("delete_head()", "[1, 2, 3, 4, 5, 6, 7, 8, 9]", sll_1)
     sll_1.delete_tail()

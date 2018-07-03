@@ -11,6 +11,13 @@ class NFSinglyLinkedList(object):
         self.head = head
         self.list_length = 0
 
+    # Iterator function
+    def __iter__(self):
+        current = self.head
+        while current:
+            yield current
+            current = current.next
+
     # Get informal string representation
     def __str__(self):
         if not self.head:

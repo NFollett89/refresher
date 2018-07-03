@@ -6,7 +6,7 @@ full_pass = True
 
 def run_test(call, expected, actual):
     global full_pass
-    if expected:
+    if str(expected):
         result = "Pass" if str(expected) == str(actual) else "Fail"
         if result == "Fail":
             full_pass = False
@@ -88,7 +88,12 @@ def test():
     sll_1 = sll.NFSinglyLinkedList()
     for i in xrange(10):
         sll_1.append(i)
-    print "\n- Remove nodes from new list %s:" % sll_1
+
+    print "\n- Test iteration on new list %s" % sll_1
+    for i, sll_i in enumerate(sll_1):
+        run_test("iter()", i, sll_i.data)
+
+    print "\n- Remove nodes from list %s:" % sll_1
     sll_1.delete_head()
     run_test("delete_head()", "[1, 2, 3, 4, 5, 6, 7, 8, 9]", sll_1)
     sll_1.delete_tail()

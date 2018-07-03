@@ -3,10 +3,10 @@
 import copy
 
 class NFNode(object):
-    def __init__(self, data, next_node=None, prev_node=None):
+    def __init__(self, data):
         self.data = data
-        self.prev = prev_node
-        self.next = next_node
+        self.prev = None
+        self.next = None
 
 
 class NFDoublyLinkedList(object):
@@ -16,6 +16,21 @@ class NFDoublyLinkedList(object):
             self.tail = self._find_tail()
         else:
             self.tail = None
+        self.list_length = 0
+
+    # Iterator
+    def __iter__(self):
+        current = self.head
+        while current:
+            yield current
+            current = current.next
+
+    # Reverse iterator
+    def reverse_iter(self):
+        current = self.tail
+        while current:
+            yield current
+            current = current.prev
 
     # Informal string representation
     def __str__(self):
@@ -32,14 +47,18 @@ class NFDoublyLinkedList(object):
 
     # Find length of the list
     def length(self):
-        if not self.head:
-            return 0
+        return self.list_length
+
+    # Get the node at given index
+    def index(self, index):
+        if self.list_length == 0 or index >= self.list_length or index < 0:
+            raise IndexError("Given index %s out of range for linked list with length %s" % (index, self.list_length))
+        elif index == 0:
+            return self.head
         current = self.head
-        length = 1
-        while current.next:
-            length += 1
+        for _ in xrange(index-1):
             current = current.next
-        return length
+        return current.next
 
     # Find tail of the current DLL
     def _find_tail(self):
@@ -51,44 +70,84 @@ class NFDoublyLinkedList(object):
 
     # Add a node to the front of the list
     def push(self, data):
-        new_head = NFNode(data, self.head)
-        self.head = new_head
-
-    # Insert a node at the given index
-    def insert(self, data, index):
-        if index > self.length():
-            raise IndexError("Index %s out of bounds for DLL with length %s" % (index, self.length()))
+        new_node = NFNode(data)
         if not self.head:
-            new_node = NFNode(data)
             self.head = new_node
             self.tail = new_node
         else:
-            for _ in xrange(index-1):
-                current = current.next
-            new_node = NFNode(data, current.next, current)
-            current.next = new_node
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+        self.list_length += 1
+
+    # Insert a node at the given index
+    def insert(self, data, index):
+        if index > self.length() or index < 0:
+            raise IndexError("Index %s out of bounds for DLL with length %s" % (index, self.length()))
+        elif index == 0:
+            return self.push(data)
+        elif index == self.length():
+            return self.append(data)
+        new_node = NFNode(data)
+        if not self.head:
+            self.head = new_node
+            self.tail = new_node
+            return
+        current = self.head
+        for _ in xrange(index-1):
+            current = current.next
+        new_node.prev = current
+        if current.next:
+            new_node.next = current.next
             new_node.next.prev = new_node
+            current.next = new_node
+        else:
+            current.next = new_node
+            self.tail = new_node
+        self.list_length += 1
 
     # Append a node to the end of the list
     def append(self, data):
-        new_node = NFNode(data, None, self.tail)
+        new_node = NFNode(data)
         if not self.head:
             self.head = new_node
-        self.tail = new_node
+            self.tail = new_node
+        else:
+            temp = self.tail
+            new_node.prev = self.tail
+            self.tail = new_node
+            temp.next = self.tail
+        self.list_length += 1
 
     # Delete head of the list
     def delete_head(self):
         old_head = self.head
         self.head = old_head.next
-        old_head.next = None
+        old_head = None
+        self.list_length -= 1
 
     # Delete node at the given index
     def delete(self, index):
-        return
+        if index > self.length() or index < 0:
+            raise IndexError("Index %s out of bounds for DLL with length %s" % (index, self.length()))
+        elif index == 0:
+            return self.delete_head()
+        elif index == self.length() - 1:
+            return self.delete_tail()
+        current = self.head
+        for _ in xrange(index-1):
+            current = current.next
+        del_node = current.next
+        current.next = current.next.next
+        current.next.prev = current
+        del_node = None
+        self.list_length -= 1
 
     # Delete tail of the list
     def delete_tail(self):
         old_tail = self.tail
         self.tail = old_tail.prev
-        old_tail.prev = None
+        self.tail.next = None
+        old_tail = None
+        self.list_length -= 1
 

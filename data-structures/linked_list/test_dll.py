@@ -95,7 +95,7 @@ def test():
 
     print "\n- Test reverse iteration of list %s:" % dll_1
     for i, dll_i in enumerate(dll_1.reverse_iter()):
-        rev_i = abs(i - len(dll_1) + 1)
+        rev_i = (i * -1) - 1
         run_test("iter()", rev_i, dll_i.data)
 
     print "\n- Remove nodes from list %s:" % dll_1

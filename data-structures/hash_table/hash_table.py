@@ -18,7 +18,9 @@ class NFHashTable(object):
         s = "{"
         for chain in self.table:
             for item in chain:
-                s += "%s: %s, " % (item[0], item[1])
+                item_0 = "\'%s\'" % item[0] if isinstance(item[0], str) else item[0]
+                item_1 = "\'%s\'" % item[1] if isinstance(item[1], str) else item[1]
+                s += "%s: %s, " % (item_0, item_1)
         # Remove the trailing comma and space before closing
         if len(s) > 1:
             s = s[:-2]
@@ -78,9 +80,10 @@ class NFHashTable(object):
     # Helper function to set a key-value pair as part of chain method
     def _set_index(self, index, key, value):
         chain = self.table[index]
-        for item in chain:
+        for i, item in enumerate(chain):
             if item[0] == key:
-                item[1] = value
+                del chain[i]
+                chain.append((key, value))
                 return
         chain.append((key, value))
         self.size += 1
@@ -117,7 +120,7 @@ class NFHashTable(object):
                     self.size -= 1
                     if len(chain) == 0:
                         self.empty += 1
-                return
+                    return
         raise KeyError("Invalid key: %s" % key)
 
     # Returns number of empty spaces

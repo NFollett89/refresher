@@ -21,6 +21,11 @@ Testing NFHashTable(5)
    - Pass | 'Invalid key: 18'
    - New size: 19
      - Pass
+ - Deleting remainder of keys:
+   - New size: 0
+     - Pass
+   - Empty spaces: 5
+     - Pass
 
 Testing NFHashTable(20)
  - Testing __init__()
@@ -44,6 +49,11 @@ Testing NFHashTable(20)
    - Pass | 'Invalid key: 18'
    - New size: 19
      - Pass
+ - Deleting remainder of keys:
+   - New size: 0
+     - Pass
+   - Empty spaces: 20
+     - Pass
 
 Testing NFHashTable(1000)
  - Testing __init__()
@@ -66,6 +76,11 @@ Testing NFHashTable(1000)
  - Deleting '18':
    - Pass | 'Invalid key: 18'
    - New size: 19
+     - Pass
+ - Deleting remainder of keys:
+   - New size: 0
+     - Pass
+   - Empty spaces: 1000
      - Pass
 
 Final summary: Pass

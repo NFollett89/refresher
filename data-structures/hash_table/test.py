@@ -85,6 +85,7 @@ def test_size(size):
     try:
         ht_1.get(9001)
         print "   - Fail"
+        full_pass = False
     except Exception as err:
         print "   - Pass | %s" % err
 
@@ -102,6 +103,7 @@ def test_size(size):
     set_result = ht_1.get('18')
     print "   - After:  %s" % set_result
     print "     - %s" % ("Pass" if set_result == "EIGHTEEN" else "Fail")
+    full_pass = False if set_result != "EIGHTEEN" else full_pass
 
     # Delete keys
     print " - Deleting '18':"
@@ -113,6 +115,16 @@ def test_size(size):
         print "   - Pass | %s" % err
     print "   - New size: %s" % len(ht_1)
     print "     - %s" % ("Pass" if len(ht_1) == 19 else "Fail")
+    full_pass = False if len(ht_1) != 19 else full_pass
+    print " - Deleting remainder of keys:"
+    for key in ht_1.keys():
+        ht_1.delete(key)
+    print "   - New size: %s" % len(ht_1)
+    print "     - %s" % ("Pass" if len(ht_1) == 0 else "Fail")
+    full_pass = False if len(ht_1) != 0  else full_pass
+    print "   - Empty spaces: %s" % ht_1.empty_spaces()
+    print "     - %s" % ("Pass" if len(ht_1) == 0 else "Fail")
+    full_pass = False if ht_1.empty_spaces() != size else full_pass
 
     
 load_data()

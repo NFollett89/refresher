@@ -1,0 +1,71 @@
+
+Testing NFHashTable(5)
+ - Testing __init__()
+   - Pass
+ - Storing data in table with size 5
+   - Pass
+ - Testing iteration:
+   - Pass
+ - Testing invalid key:
+   - Pass | 'Invalid key: 9001'
+ - Utilization:
+   - items:        20
+   - empty_spaces: 0
+   - collisions:   15
+ - Replace value of existing keys:
+   - Setting ('18', 'EIGHTEEN')
+   - Before: eighteen
+   - After:  EIGHTEEN
+     - Pass
+ - Deleting '18':
+   - Pass | 'Invalid key: 18'
+   - New size: 19
+     - Pass
+
+Testing NFHashTable(20)
+ - Testing __init__()
+   - Pass
+ - Storing data in table with size 20
+   - Pass
+ - Testing iteration:
+   - Pass
+ - Testing invalid key:
+   - Pass | 'Invalid key: 9001'
+ - Utilization:
+   - items:        20
+   - empty_spaces: 4
+   - collisions:   4
+ - Replace value of existing keys:
+   - Setting ('18', 'EIGHTEEN')
+   - Before: eighteen
+   - After:  EIGHTEEN
+     - Pass
+ - Deleting '18':
+   - Pass | 'Invalid key: 18'
+   - New size: 19
+     - Pass
+
+Testing NFHashTable(1000)
+ - Testing __init__()
+   - Pass
+ - Storing data in table with size 1000
+   - Pass
+ - Testing iteration:
+   - Pass
+ - Testing invalid key:
+   - Pass | 'Invalid key: 9001'
+ - Utilization:
+   - items:        20
+   - empty_spaces: 980
+   - collisions:   0
+ - Replace value of existing keys:
+   - Setting ('18', 'EIGHTEEN')
+   - Before: eighteen
+   - After:  EIGHTEEN
+     - Pass
+ - Deleting '18':
+   - Pass | 'Invalid key: 18'
+   - New size: 19
+     - Pass
+
+Final summary: Pass
